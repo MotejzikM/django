@@ -1,0 +1,16 @@
+$main-color: #0d4a52;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: $main-color;
+}
+
+@import "body";
+@import "headerfooter";
+@import "home";
+@import "form";
+@import "error";
+@import "list";
+@import "detail";

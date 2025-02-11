@@ -1,0 +1,83 @@
+header {
+    width: 100%;
+    padding: 30px;
+
+    background-color: $main-color;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h1 {
+        color: #fff;
+        margin: 0;
+
+        user-select: none;
+
+        a {
+            text-decoration: none;
+            color: #fff;
+        }
+    }
+
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        a, p {
+            text-decoration: none;
+            color: #fff;
+
+            padding: 10px;
+            margin: 0 10px;
+            border-radius: 5px;
+
+            transition: background-color 0.3s;
+            cursor: pointer;
+
+            &:hover {
+                background-color: #fff;
+                color: $main-color;
+            }
+        }
+
+        p {
+            cursor: default;
+            user-select: none;
+            background-color: lighten($main-color, 20%);
+
+            &:hover {
+                background-color: lighten($main-color, 20%);
+                color: #fff;
+            }
+        }
+    }
+}
+
+footer {
+    width: 100%;
+    padding: 30px;
+
+    background-color: $main-color;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+
+    p {
+        color: #fff;
+        margin: 0;
+    }
+}
+
+body.login footer {
+    position: absolute;
+    bottom: 0;
+}

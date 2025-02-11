@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css_styles %}
+    <link rel="stylesheet" href="/static/styles.css">
+{% endblock css_styles %}
+
+{% block page_title %} Přihlášení {% endblock page_title %}
+
+{% block body_class %}login{% endblock body_class %}
+
+{% block content %}
+
+<form class="form-with-authentication" action="/users/" method="post">
+    {% csrf_token %}
+    <h2>Přihlašte se</h2>
+    <hr>
+    {{ form }}
+    <button class="form-submit">Přihlásit</button>
+</form>
+
+{% endblock content %}
+
+{% block js_scripts %}
+
+<script src="{% static "login.js" %}"></script>
+
+{% endblock js_scripts %}
