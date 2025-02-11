@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_title %}Přidat obraz{% endblock page_title %}
+
+{% block css_styles %}
+    <link rel="stylesheet" href="{% static "styles.css" %}">
+{% endblock css_styles %}
+
+{% block content %}
+
+    <form class="form-novy" action="/obrazy/novy/" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h2>Přidat obraz</h2>
+        <hr>
+        
+        {{ form }}
+
+
+        <button type="submit" class="form-submit">Přidat</button>
+    </form>
+
+{% endblock content %}
+    

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_title %} Přehled obrazů {% endblock page_title %}
+
+{% block css_styles %}
+    <link rel="stylesheet" href="/static/styles.css">
+{% endblock css_styles %}
+
+{% block content %}
+
+    <div class="container">
+
+        {% for obraz in obrazy_list %}
+            <div class="obraz">
+                <div class="img_container">
+                    <img src="/static{{ obraz.img.url }}" alt="">
+                </div>
+
+                <div class="info_container">
+                    <h2>{{ obraz.nazev }}</h2>
+                    <p><strong>Autor:</strong> {{ obraz.autor }}</p>
+                    <p><strong>Technika:</strong> {{ obraz.technika }}</p>
+                    <p><strong>Cena:</strong> {{ obraz.cena }}</p>
+                </div>
+
+                <div class="link_container">
+                    <a href="{{ obraz.id }}" class="link">Zobrazit podrobnosti</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock content %}

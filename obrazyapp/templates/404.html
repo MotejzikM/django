@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_title %} Stránka nenalezena {% endblock page_title %}
+
+{% block css_styles %}
+    <link rel="stylesheet" href="{% static "styles.css" %}">
+{% endblock css_styles %}
+
+{% block body_class %}login{% endblock body_class %}
+
+{% block content %}
+
+    <div class="e404">
+        <h1>{{ chybova_hlaska }}</h1>
+        <a href="/obrazy/" class="link">Zpět na přehled obrazů</a>
+    </div>
+
+{% endblock content %}

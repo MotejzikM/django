@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_title %}Uprav obraz{% endblock page_title %}
+
+{% block css_styles %}
+    <link rel="stylesheet" href="{% static "styles.css" %}">
+{% endblock css_styles %}
+
+{% block content %}
+
+    <form class="form-novy form-edit" action="/obrazy/edit/{{ obraz.id }}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h2>Uprav obraz</h2>
+        <hr>
+
+        <div class="img_container">
+            <img src="/static{{ obraz.img.url }}" alt="">
+        </div>
+        
+        {{ form }}
+
+
+        <button type="submit" class="form-submit">Uprav</button>
+    </form>
+
+{% endblock content %}
+    
