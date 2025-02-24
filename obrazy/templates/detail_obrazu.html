@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+{% load custom_filters %}
+
+{% block page_title %} {{obraz.nazev}} {% endblock page_title %}
+
+{% block css_styles %}
+    <link rel="stylesheet" href="/static/styles.css">
+{% endblock css_styles %}
+
+{% block content %}
+
+    <div class="obraz-full-page">
+        
+        <div class="img_container">
+            <img src="/static{{ obraz.img.url }}" alt="">
+        </div>        
+        
+        <div class="info_container">
+            <h2>{{ obraz.nazev }}</h2>
+            <p><strong>Autor:</strong> 
+                <a href="/autori/{{ obraz.autor.id }}">
+                    {{ obraz.autor }}
+                </a>
+            </p>
+            <p><strong>Technika:</strong> {{ obraz.technika }}</p>
+            <p><strong>Cena:</strong> {{ obraz.cena }}</p>
+            <p><strong>Poznámky:</strong> {{ obraz.poznamky }}</p>
+
+            {% if user|has_group:"Editoři" %}
+                <div class="link_container">
+                    <a href="/obrazy/edit/{{ obraz.id }}">
+                        <button>
+                            <i class="fas fa-edit"></i>
+                            Upravit
+                        </button>
+                    </a>
+                    <a href="/obrazy/delete/{{ obraz.id }}">
+                        <button>
+                            <i class="fas fa-trash-alt"></i>
+                            Smazat
+                        </button>
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock content %}

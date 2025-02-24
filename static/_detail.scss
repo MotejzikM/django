@@ -1,0 +1,143 @@
+.obraz-full-page {
+    width: 100%;
+    margin: auto;
+    padding: 50px;
+    border-radius: 20px;
+
+    overflow: visible;
+
+    .img_container {
+        flex: 1;
+        width: 100%;
+        max-height: 100%;
+        max-width: 500px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 20px auto;
+
+        img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+    }
+
+    .info_container {
+        padding: 70px;
+        display: flex;
+        flex-direction: column;
+
+        overflow: visible;
+
+        border-radius: 20px;
+        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
+
+        * {
+            overflow: visible;
+        }
+
+        background-color: rgba(255, 255, 255, 0.6);
+
+        h2 {
+            margin-bottom: 10px;
+            font-size: 40px;
+        }
+
+        p {
+            margin: 8px 0;
+            font-size: 20px; 
+        }
+
+        h2, p {
+            width: min(600px, 100%);
+            margin: 10px auto;
+        }
+
+        .obrazy {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(min(500px, 100%), 1fr));
+            grid-gap: 20px;
+            padding: 20px 0;
+            margin-top: 40px;
+
+            .obraz { 
+                width: min(500px, 100%);
+                margin: 0 auto;
+                scale: .9;
+                
+                .info_container {
+                    background-color: transparent;
+                    margin: 0;
+                    padding: 20px;
+                    box-shadow: none;
+                }
+
+                .img_container {
+                    overflow: hidden;
+                    max-height: 300px;
+                }
+            }
+        }
+    }
+
+    .link_container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+
+        gap: 20px;
+
+        /*
+        a {
+            text-decoration: none;
+            color: $main-color;
+            padding: 10px;
+            margin: 10px;
+
+            background-color: $main-color;
+            color: #fff;
+            border: 1px solid $main-color;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+
+
+            &:hover {
+                background-color: #fff;
+                color: $main-color;
+            }
+        }
+        */
+    }
+}
+
+@media (width < 1000px) {
+    .obraz-full-page {
+        flex-direction: column;
+        padding: 20px;
+
+        .info_container {
+            margin-left: 0;
+            padding: 20px;
+            width: 100%;
+        }
+
+        &.autor {
+            .info_container .obraz {
+                margin: 20px auto;
+                padding: 0;
+
+                .info_container {
+                    padding: 10px;
+                    text-align: center;
+                }
+            }
+
+        }
+
+        .link_container {
+            width: fit-content;
+            margin: 20px auto;
+        }
+    }
+}

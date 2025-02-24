@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_title %}Přidat autora{% endblock page_title %}
+
+{% block css_styles %}
+    <link rel="stylesheet" href="{% static "styles.css" %}">
+{% endblock css_styles %}
+
+{% block content %}
+
+    {% if stranka == "novy" %}
+        <form class="form-novy" action="/autori/new/" method="post" enctype="multipart/form-data">
+    {% else %}
+        <form class="form-novy" action="/autori/edit/{{ autor.id }}/" method="post" enctype="multipart/form-data">
+    {% endif %}
+
+        {% csrf_token %}
+        {% if stranka == "novy" %}
+            <h2>Přidat autora</h2>
+        {% else %}
+            <h2>Upravit autora</h2>
+        {% endif %}
+        
+        <hr>
+        
+        {{ form }}
+
+
+        <button type="submit" class="form-submit">
+            {% if stranka == "novy" %}
+                Přidat
+            {% else %}
+                Upravit
+            {% endif %}
+        </button>
+    </form>
+
+{% endblock content %}

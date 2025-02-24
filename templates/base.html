@@ -1,0 +1,55 @@
+{% load static %}
+{% load custom_filters %}
+
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block css_styles %}{% endblock css_styles %}
+    <link rel="icon" href="{% static "canvas.ico" %}">
+    <script src="https://kit.fontawesome.com/7ca79228d0.js" crossorigin="anonymous"></script>
+    <title>{% block page_title %} Neznámá stránka {% endblock %} | Rodinná databáze obrazů</title>
+</head>
+<body class="{% block body_class %}{% endblock body_class %}">
+
+    <header>
+        <h1><a href="/">Rodinná databáze obrazů</a></h1>
+
+        {% if user.is_authenticated %}
+            <nav class="hidden">
+                <a href="/">Domů</a>
+                <a href="/autori">Přehled autorů</a>
+                <a href="/obrazy/">Přehled obrazů</a>
+                
+                <a href="/uzivatele/logout/">Odhlásit</a>
+                {% if user.is_superuser %}
+                    <a href="/admin/">Admin</a>
+                {% else %}
+                    <p>{{ user.username }}</p>
+                {% endif %}
+            </nav>
+
+            {% else %}
+            <nav class="hidden">
+                <a href="/uzivatele/">Přihlásit</a>
+            </nav>
+            {% endif %}
+        
+        <button id="menuToggle"><i class="fa fa-bars"></i></button>
+            
+    </header>
+
+    {% block content %}
+
+    {% endblock  %}
+
+    <script src="{% static "navigation.js" %}"></script>
+
+    <footer>
+        <p>&copy; 2025 - Rodinná databáze obrazů</p>
+    </footer>
+
+    {% block js_scripts %}{% endblock js_scripts %}
+</body>
+</html>

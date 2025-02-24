@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_title %} Stránka nenalezena {% endblock page_title %}
+
+{% block css_styles %}
+    <link rel="stylesheet" href="/static/styles.css">
+{% endblock css_styles %}
+
+{% block body_class %}login{% endblock body_class %}
+
+{% block content %}
+
+    <div class="e404">
+        <h1>
+            <i class="fas fa-exclamation-triangle"></i>
+            Stránka nenalezena
+        </h1>
+        <a href="/" class="link">
+            <button>
+                <i class="fas fa-arrow-left"></i>
+                Zpět na domovskou stránku
+            </button>
+        </a>
+    </div>
+
+{% endblock content %}

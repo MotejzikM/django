@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% load static %}
+{% load custom_filters %}
+
+{% block page_title %}Seznam obrazů{% endblock page_title %}
+
+{% block css_styles %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+{% endblock css_styles %}
+
+{% block body_class %}seznam_obrazu{% endblock body_class %}
+
+{% block content %}
+    
+    {% if user|has_group:"Editoři" %}
+        <div class="link_container">
+            <a href="/obrazy/new/" class="link">
+                <button>
+                    <i class="fas fa-plus"></i>
+                    Přidat obraz
+                </button>
+            </a>
+        </div>
+    {% endif %}
+
+    <div class="filters">
+        <form action="/obrazy/" method="get">
+            <label for="autor">Autor:</label>
+            <select name="autor" id="autor">
+                <option value="">Všichni</option>
+                {% for autor in autori_list %}
+                    <option value="{{ autor.id }}"
+                        {% if autor.id == autor_selected.id %}
+                            selected
+                        {% endif %}>
+                        {{ autor }}
+                    </option>
+                {% endfor %}
+            </select>
+
+            <label for="technika">Technika:</label>
+            <select name="technika" id="technika">
+                <option value="">Všechny</option>
+                {% for technika in techniky_list %}
+                    <option value="{{ technika.id }}"
+                        {% if technika == technika_selected %}
+                            selected
+                        {% endif %}>
+                        {{ technika }}
+                    </option>
+                {% endfor %}
+            </select>
+
+            <button type="submit">
+                <i class="fas fa-filter"></i>
+                Filtruj
+            </button>
+        </form>
+    </div>
+
+    {% if autor_selected %}
+        <h2 class="list_title">Filtrováno podle autora: {{ autor_selected }}</h2>
+    {% endif %}
+
+    {% if technika_selected %}
+        <h2 class="list_title">Filtrováno podle techniky: {{ technika_selected }}</h2>
+    {% endif %}
+
+    {% if obrazy_list %}
+        <div class="container">
+            {% for obraz in obrazy_list %}
+                <div class="obraz">
+                    <div class="img_container">
+                        <img src="/static{{ obraz.img.url }}" alt="">
+                    </div>
+
+                    <div class="info_container">
+                        <h2>{{ obraz.nazev }}</h2>
+                        <p><strong>Autor:</strong>
+                            <a href="/autori/{{ obraz.autor.id }}">
+                                {{ obraz.autor }}
+                            </a>
+                        </p>
+                        <p><strong>Technika:</strong> {{ obraz.technika }}</p>
+                        <p><strong>Cena:</strong> {{ obraz.cena }} Kč</p>
+                    </div>
+
+                    <div class="link_container">
+                        <a href="{{ obraz.id }}">
+                            <button>
+                                <i class="fas fa-info-circle"></i>
+                                Zobrazit podrobnosti
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}   
+    {% else %}
+        <h2 class="list_title">Žádné obrazy nebyly nalezeny</h2>
+    {% endif %}     
+    </div>
+
+{% endblock content %}

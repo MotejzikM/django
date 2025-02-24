@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_title %}Přidat obraz{% endblock page_title %}
+
+{% block css_styles %}
+    <link rel="stylesheet" href="{% static "styles.css" %}">
+{% endblock css_styles %}
+
+{% block content %}
+
+    {% if stranka == "novy" %}
+        <form class="form-novy" action="/obrazy/new/" method="post" enctype="multipart/form-data">
+    {% else %}
+        <form class="form-novy" action="/obrazy/edit/{{ obraz.id }}/" method="post" enctype="multipart/form-data">
+    {% endif %}
+
+        {% csrf_token %}
+        {% if stranka == "novy" %}
+            <h2>Přidat obraz</h2>
+        {% else %}
+            <h2>Upravit obraz</h2>
+        {% endif %}
+        
+        <hr>
+        
+        {{ form }}
+
+
+        <button type="submit" class="form-submit">
+            {% if stranka == "novy" %}
+                Přidat
+            {% else %}
+                Upravit
+            {% endif %}
+        </button>
+    </form>
+
+{% endblock content %}

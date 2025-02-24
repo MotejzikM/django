@@ -1,0 +1,174 @@
+form {
+    width: 100%;
+    max-width: 500px;
+    height: fit-content;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 70px 50px;
+    border-radius: 20px;
+    background-color: #fff;
+
+    &.form-novy {
+        margin: 50px auto;
+        width: 100%;
+        max-width: 800px;
+        
+        display: block;
+
+        div {
+            display: block;
+        }
+
+        button {
+            width: 100%;
+        }
+
+        .img_container {
+            width: 100%;
+            max-height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            img {
+                max-width: 50%;
+            }
+        }
+    }
+
+    div {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    h2 {
+        font-size: 30px;
+        margin-bottom: 0;
+    }
+
+    hr {
+        width: 100%;
+        margin: 20px 0;
+    }
+
+    label {
+        display: block;
+        width: 100%;
+        margin: 10px 0;
+        font-weight: bold;
+    }
+
+    .errorlist {
+        color: red;
+        margin: 10px 0;
+    }
+
+    input, select {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid $main-color;
+        margin: 10px 0;
+    }
+
+    input[type="checkbox"] {
+        opacity: 0;
+        display: inline;
+        width: auto;
+    }
+
+    input[type="checkbox"] + label {
+        position: relative;
+        padding-left: 40px;
+        cursor: pointer;
+        display: inline-block;
+        line-height: 25px;
+        width: auto;
+        height: fit-content;
+        overflow: visible;
+
+        &::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            border: 1px solid $main-color;
+            background-color: #fff;
+            border-radius: 10px;
+        }
+
+        &::after {
+            font-family: 'Font Awesome 5 Free';
+            content: '\f00c';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            line-height: 20px;
+            color: #fff;
+            border-radius: 10px;
+            border: 1px solid $main-color;
+
+        }
+    }
+
+    input[type="checkbox"]:checked + label::before {
+        background-color: $main-color;
+    }
+
+    
+
+    label[for="img-clear_id"] {
+        display: inline;
+    }
+
+    textarea {
+        width: 100%;
+        max-width: 100%;
+        min-width: 100%;
+        min-height: 100px;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid $main-color;
+        margin: 10px 0;
+    }
+
+    button {
+        width: 50%;
+        margin: 0 auto;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid $main-color;
+        margin: 10px 0;
+        background-color: $main-color;
+        color: #fff;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s;
+
+        &:hover {
+            background-color: #fff;
+            color: $main-color;
+        }
+    }
+}
+
+@media (width < 1000px) {
+    form {
+        padding: 50px 20px;
+    }
+}
+
+@media (width < 500px) {
+    form {
+        width: calc(100% - 20px) !important;
+    }
+    
+}

@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load static %}
+{% load custom_filters %}
+
+{% block page_title %}Domovská stránka{% endblock page_title %}
+
+{% block css_styles %}
+    <link rel="stylesheet" href="{% static "styles.css" %}">
+{% endblock css_styles %}
+
+{% block body_class %}home{% endblock body_class %}
+
+{% block content %}
+
+    <div class="home_header">
+        <h2>Vítejte v rodinné databázi obrazů</h2>
+        <p>Zde můžete prohlížet a upravovat obrazy z rodinného alba.</p>
+    </div>
+
+    <div class="home_content">
+        {% if user.is_authenticated %}
+            <div class="content_item">
+                <div class="img_container">
+                    <a href="/autori/"><img src="{% static "/images/background2.png" %}" alt=""></a>
+                </div>
+
+                <div class="text_container">
+                    <a href="/autori/" class="h3">Přehled autorů</a>
+                    <p>Zde můžete prohlížet a upravovat informace o autorech obrazů.</p>
+                </div>
+            </div>
+
+            <div class="content_item">
+                <div class="img_container">
+                    <a href="/obrazy/"><img src="{% static "/images/background3.png" %}" alt=""></a>
+                </div>
+        
+                <div class="text_container">
+                    <a href="/obrazy/" class="h3">Přehled obrazů</a>
+                    <p>Zde můžete prohlížet všechny obrazy z rodinného alba. </p>
+                </div>
+            </div>
+        {% else %}
+            <div class="content_item">
+                <div class="img_container">
+                    <a href="/uzivatele/"><img src="{% static "/images/background4.jpg" %}" alt=""></a>
+                </div>
+        
+                <div class="text_container">
+                    <a href="/uzivatele/" class="h3">Přihlášení</a>
+                    <p>Pro prohlížení a úpravu obrazů se musíte přihlásit.</p>
+                </div>
+            </div>
+        {% endif %}
+    
+        {% if user.is_superuser %}
+            <div class="content_item">
+                <div class="img_container">
+                    <a href="/admin/"><img src="{% static "/images/background4.jpg" %}" alt=""></a>
+                </div>
+    
+                <div class="text_container">
+                    <a href="/admin/" class="h3">Administrace</a>
+                    <p>Zde můžete spravovat uživatele, obrazy a další data v databázi. Můžete měnit a mazat záznamy a provádět další úkony.</p>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+{% endblock content %}

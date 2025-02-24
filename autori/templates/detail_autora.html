@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load static %}
+{% load custom_filters %}
+
+{% block page_title %} {{obraz.nazev}} {% endblock page_title %}
+
+{% block css_styles %}
+    <link rel="stylesheet" href="/static/styles.css">
+{% endblock css_styles %}
+
+{% block content %}
+
+    <div class="obraz-full-page autor">
+        
+        <div class="img_container">
+            {% if autor.img %}
+                <img src="/static{{ autor.img.url }}" alt="">
+            {% else %}
+                <img src="/static/media/autori/default.png" alt="">
+            {% endif %}
+        </div>        
+        
+        <div class="info_container">
+            <h2>{{ autor.jmeno }}</h2>
+            
+            <p><strong>Narozen:</strong> {{ autor.narozen }}</p>
+            
+            {% if autor.umrti %}
+                <p><strong>Zemřel:</strong> {{ autor.umrti }}</p>
+            {% endif %}
+
+            <p><strong>Životopis:</strong> <br><br> {{ autor.zivotopis }}</p>
+
+
+            <div class="obrazy">
+                {% for obraz in autor.obrazy %}
+                    <div class="obraz">
+                        <div class="img_container">
+                            <img src="/static{{ obraz.img.url }}" alt="">
+                        </div>
+                        <div class="info_container">
+                            <h2>{{ obraz.nazev }}</h2>
+                            <p><strong>Technika:</strong> {{ obraz.technika }}</p>
+                            <p><strong>Cena:</strong> {{ obraz.cena }} Kč</p>
+                        </div>
+                        <div class="link_container">
+                            <a href="/obrazy/{{ obraz.id }}">
+                                <button>
+                                    <i class="fas fa-info-circle"></i>
+                                    Zobrazit podrobnosti
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            {% if user|has_group:"Editoři" %}
+                <div class="link_container">
+                    <a href="/autori/edit/{{ autor.id }}">
+                        <button>
+                            <i class="fas fa-edit"></i>
+                            Upravit
+                        </button>
+                    </a>
+                    <a href="/autori/delete/{{ autor.id }}">
+                        <button>
+                            <i class="fas fa-trash"></i>
+                            Smazat
+                        </button>
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock content %}
