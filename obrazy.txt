@@ -1,1 +1,0 @@
-1;obr-1.png;Obraz 1;Autor obrazu;1990;technika;Tady budou poznámky.;100000
